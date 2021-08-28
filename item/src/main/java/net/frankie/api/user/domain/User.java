@@ -4,6 +4,8 @@ import lombok.Data;
 import net.frankie.api.order.domain.Order;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -13,22 +15,26 @@ public class User {
     @Id @Column(name = "user_id")
     private long userId;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
+    @Size(min=8, message="8자리 이상 입력하시오")
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
     @Column(name = "reg_date")
-    private Date regDate;
+    private String regDate;
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
+    //접속 권한 판단을 위해선 load를 해놓은 상태에서 진행해야 하기 때문에, Eager 처리
+    @ElementCollection(fetch = FetchType.EAGER)
+    public List<Role> roles;
 }
