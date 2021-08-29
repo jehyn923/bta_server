@@ -8,7 +8,7 @@ import org.springframework.security.web.DefaultSecurityFilterChain;
 
 @RequiredArgsConstructor
 public class SecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
-    private final SecurityProvider securityProvider;
+    //private final SecurityProvider securityProvider;
     @Override
     public void configure(HttpSecurity builder) throws Exception {
         super.configure(builder);

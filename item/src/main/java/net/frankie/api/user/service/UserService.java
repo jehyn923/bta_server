@@ -1,6 +1,7 @@
 package net.frankie.api.user.service;
 
 import net.frankie.api.user.domain.User;
+import net.frankie.api.user.domain.UserDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,8 +11,8 @@ import java.util.Optional;
 public interface UserService {
     boolean existByUsername(String username);
     Optional<User> findByUsername(String username);
-    User signin(String username, String password);
-
+    UserDto signin(User user);
+    String signup(User user);
     //pagination 확인 할 것
     List<User> findAll();
 

@@ -1,5 +1,6 @@
 package net.frankie.api.item.domain;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.frankie.api.order.domain.Order;
@@ -34,4 +35,10 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<Order> orders = new ArrayList<>();
 
+    @Builder
+    public Item(String itemBrand,String itemName, String itemColor){
+        this.itemBrand = itemBrand;
+        this.itemName = itemName;
+        this.itemColor = itemColor;
+    }
 }

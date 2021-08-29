@@ -31,10 +31,12 @@ public class User {
     @Column(name = "reg_date")
     private String regDate;
 
-    @OneToMany(mappedBy = "user")
-    private List<Order> orders;
-
     //접속 권한 판단을 위해선 load를 해놓은 상태에서 진행해야 하기 때문에, Eager 처리
     @ElementCollection(fetch = FetchType.EAGER)
     public List<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+
+
 }
